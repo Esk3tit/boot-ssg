@@ -81,3 +81,16 @@ def split_nodes_link(old_nodes: list[TextNode]) -> list[TextNode]:
 
     return new_nodes
 
+
+def text_to_textnodes(text: str) -> list[TextNode]:
+    initial_node = TextNode(text, TextType.TEXT)
+    bold = split_nodes_delimiter([initial_node], "**", TextType.BOLD)
+    italic = split_nodes_delimiter(bold, "_", TextType.ITALIC)
+    code = split_nodes_delimiter(italic, "`", TextType.CODE)
+    link = split_nodes_link(code)
+    return split_nodes_image(link)
+
+
+def markdown_to_blocks(markdown: str) -> list[str]:
+    lines = markdown.split("\n\n")
+    return [line.strip() for line in lines if line.strip() != ""]
