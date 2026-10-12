@@ -89,8 +89,3 @@ def text_to_textnodes(text: str) -> list[TextNode]:
     code = split_nodes_delimiter(italic, "`", TextType.CODE)
     link = split_nodes_link(code)
     return split_nodes_image(link)
-
-
-def markdown_to_blocks(markdown: str) -> list[str]:
-    lines = markdown.split("\n\n")
-    return [line.strip() for line in lines if line.strip() != ""]
