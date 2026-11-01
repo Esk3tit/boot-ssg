@@ -1,7 +1,7 @@
 import os
 import shutil
 
-from textnode import TextNode, TextType
+from generate_page import generate_page
 
 def clean_destination(dest: str):
     if os.path.exists(dest):
@@ -32,6 +32,7 @@ def copy(src: str, dest: str):
 
 def main():
     copy("static/", "public/")
+    generate_page("content/index.md", "template.html", "public/index.html")
 
 if __name__ == "__main__":
     main()
